@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"spell_functions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"spell_functions",
+  "parent":{
+    "name":"Functions",
+    "path":"folders/Scripts/Functions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

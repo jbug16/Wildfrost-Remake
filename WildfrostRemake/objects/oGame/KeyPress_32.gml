@@ -1,0 +1,1 @@
+draw_card(6, deck);
