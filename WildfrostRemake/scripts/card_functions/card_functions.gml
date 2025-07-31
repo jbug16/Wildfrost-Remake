@@ -71,7 +71,7 @@ function get_cards_by_type(_type, _subtype = undefined)
 
         if (!is_undefined(_c) && _c.type == _type) 
 		{
-            // if a subtype was provided, check it too
+            // If a subtype was provided, check it too
             if (is_undefined(_subtype) || _c.subtype == _subtype) 
 			{
                 array_push(_result, i);
@@ -108,7 +108,7 @@ function add_keyword_to_card(_id, _keyword)
 
     if (is_undefined(_card)) return; // safety check
 
-    // only add if it doesn't already exist
+    // Only add if it doesn't already exist
     if (!array_contains(_card.keywords, _keyword)) 
 	{
         array_push(_card.keywords, _keyword);
@@ -126,5 +126,22 @@ function setup_card(_card, _id)
     if (_data.type == CardType.Unit) _card.unit_object = _data.unit_object;
     else if (_data.type == CardType.Spell) _card.effect = _data.effect;
 	
-	show_debug_message($"Created: {_data.name}");
+	f($"Created: {_data.name}");
+}
+
+function play_card(_inst) 
+{
+    var _len = array_length(global.current_hand);
+
+	for (var i = 0; i < _len; i++) 
+	{
+		// If this is the card we are dragging
+		if (global.current_hand[i] == _inst) 
+		{
+			f("Deleting index: " + string(i));
+			array_delete(global.current_hand, i, 1);
+			instance_destroy(_inst);
+			break;
+		}
+	}
 }

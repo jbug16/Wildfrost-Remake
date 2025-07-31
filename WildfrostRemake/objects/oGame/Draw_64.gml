@@ -1,0 +1,1 @@
+draw_text(10, 10, "FPS: " + string(round(fps)));
