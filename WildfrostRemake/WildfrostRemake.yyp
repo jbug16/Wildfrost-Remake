@@ -12,7 +12,6 @@
   "Folders":[
     {"$GMFolder":"","%Name":"Fonts","folderPath":"folders/Fonts.yy","name":"Fonts","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Objects","folderPath":"folders/Objects.yy","name":"Objects","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"Spells","folderPath":"folders/Objects/Spells.yy","name":"Spells","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Managers","folderPath":"folders/Objects/Managers.yy","name":"Managers","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"UI","folderPath":"folders/Objects/UI.yy","name":"UI","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Units","folderPath":"folders/Objects/Units.yy","name":"Units","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -39,7 +38,6 @@
     {"id":{"name":"oUnitMercenary","path":"objects/oUnitMercenary/oUnitMercenary.yy",},},
     {"id":{"name":"oUnitSummon","path":"objects/oUnitSummon/oUnitSummon.yy",},},
     {"id":{"name":"parCard","path":"objects/parCard/parCard.yy",},},
-    {"id":{"name":"parSpell","path":"objects/parSpell/parSpell.yy",},},
     {"id":{"name":"parUnit","path":"objects/parUnit/parUnit.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"card_functions","path":"scripts/card_functions/card_functions.yy",},},

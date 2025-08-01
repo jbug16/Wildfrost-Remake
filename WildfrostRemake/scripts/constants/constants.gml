@@ -51,6 +51,7 @@ global.current_grid = [];
 
 // UI helpers
 global.dragged_card = noone;
+global.dragged_unit = noone;
 
 #endregion
 
@@ -59,8 +60,7 @@ global.dragged_card = noone;
 // Debug
 #macro f show_debug_message
 
-// Helpers for drawing cards in hand
-#macro HAND_START_Y  600
+// UI helpers
 #macro HAND_SPACING  (104 + 20) // sprite width + space
 
 #endregion

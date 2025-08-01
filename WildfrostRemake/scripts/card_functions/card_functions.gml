@@ -139,8 +139,21 @@ function play_card(_inst)
 		if (global.current_hand[i] == _inst) 
 		{
 			f("Deleting index: " + string(i));
+			var _data = global.card_data[_inst.card_id];
+			
+			// Play spell effect
+            if (_data.type == CardType.Spell) 
+			{
+                if (!is_undefined(_data.effect)) 
+				{
+                    script_execute(_data.effect, _inst.spell_target); 
+                }
+            }
+			
 			array_delete(global.current_hand, i, 1);
 			instance_destroy(_inst);
+			reposition_cards();
+			
 			break;
 		}
 	}

@@ -23,21 +23,21 @@ if (mouse_check_button_released(mb_left) && global.dragged_card == id)
 	
 	depth = base_depth;
 	
+	// Check position to see if we can place a unit on the grid
 	if (place_meeting(x, y, oTestGrid)) // TODO: update this to only allow if the card is in a grid slot
 	{
 		var _data = global.card_data[card_id];
 		
 		spawn_unit(
             card_id,
-			300 + (HAND_SPACING * card_id),
+			300 + (HAND_SPACING * card_id), //temp grid
 			300,
             "player"
         );
 		
 		play_card(id);
 	}
-	
-	reposition_cards();
+	else reposition_cards(); // place the card back into the player's hand
 }
 
 // Handle dragging
