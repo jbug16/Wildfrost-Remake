@@ -32,7 +32,7 @@
     {"id":{"name":"oGridManager","path":"objects/oGridManager/oGridManager.yy",},},
     {"id":{"name":"oHandManager","path":"objects/oHandManager/oHandManager.yy",},},
     {"id":{"name":"oSlot","path":"objects/oSlot/oSlot.yy",},},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"rmBattle","path":"rooms/rmBattle/rmBattle.yy",},},
     {"id":{"name":"card_functions","path":"scripts/card_functions/card_functions.yy",},},
     {"id":{"name":"constants","path":"scripts/constants/constants.yy",},},
     {"id":{"name":"deck_functions","path":"scripts/deck_functions/deck_functions.yy",},},
@@ -49,7 +49,7 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"rmBattle","path":"rooms/rmBattle/rmBattle.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

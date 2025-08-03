@@ -1,3 +1,5 @@
+#region Card Initialization
+
 /// @function Initializes all of the card's data including: name, type, sprite, hp, etc.
 function init_card_data()
 {
@@ -64,6 +66,10 @@ function init_card_data()
 	#endregion
 }
 
+#endregion
+
+#region Card Lookup Functions
+
 /// @function Returns an array of cards with this specific type
 function get_cards_by_type(_type, _subtype = undefined) 
 {
@@ -107,6 +113,16 @@ function get_cards_by_keyword(_keyword)
     return _result;
 }
 
+/// @function Returns whether this card has a stat defined
+function has_stat(_stat)
+{
+	return _stat != -1;
+}
+
+#endregion
+
+#region Card Utility Functions
+
 /// @function Adds a keyword to a card
 function add_keyword_to_card(_id, _keyword) 
 {
@@ -134,6 +150,10 @@ function create_stats(_hp, _atk, _time, _spr, _owner, _type)
     };
 }
 
+#endregion
+
+#region Card Creation
+
 /// @function Returns a card instance with defined stats
 function create_card(_id, _x = oHandManager.x, _y = oHandManager.y) 
 {
@@ -160,6 +180,10 @@ function create_card(_id, _x = oHandManager.x, _y = oHandManager.y)
     return card;
 }
 
+#endregion
+
+#region Gameplay
+
 /// @function These actions happen when a user plays a card
 function play_card(_inst) 
 {
@@ -178,12 +202,13 @@ function play_card(_inst)
 			{
                 if (!is_undefined(_data.effect)) 
 				{
-                    script_execute(_data.effect, _inst.spell_target); 
+                    script_execute(_data.effect, _inst.spell_target);
                 }
+				
+				instance_destroy(_inst);
             }
 			
 			array_delete(global.current_hand, i, 1);
-			instance_destroy(_inst);
 			reposition_cards();
 			
 			break;
@@ -191,8 +216,4 @@ function play_card(_inst)
 	}
 }
 
-/// @function Returns whether this card has a stat defined
-function has_stat(_stat)
-{
-	return _stat != -1;
-}
+#endregion

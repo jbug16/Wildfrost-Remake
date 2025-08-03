@@ -1,5 +1,11 @@
 #region Enums
 
+// Determines what state the card is in
+enum State {
+	InHand,
+	InBattle
+}
+
 // Determines how the card can be played
 enum CardType {
 	Unit,

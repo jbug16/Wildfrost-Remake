@@ -1,3 +1,5 @@
+#region Deck Building 
+
 /// @function Pushes any halo cards to the user's current hand
 function build_starting_hand()
 {
@@ -45,6 +47,10 @@ function build_deck()
 	return _deck;
 }
 
+#endregion
+
+#region Hand Management
+
 /// @function Removes any cards from the user's current hand
 function clear_hand()
 {
@@ -65,34 +71,6 @@ function clear_hand()
     }
     
 	global.current_hand = [];
-}
-
-/// @function Pulls a card from the generated deck and places it in the user's current hand
-function draw_card(_amount, _deck)
-{
-	// No more cards to draw from
-	if (array_length(_deck) == 0) return;
-	
-    clear_hand();
-
-    // Draw x random cards
-    for (var i = 0; i < _amount; i++) 
-	{
-		var _index = irandom(array_length(_deck) - 1);
-        var _id = _deck[_index];
-
-        // Create the card instance
-        var _inst = create_card(_id);
-		
-		// Remove card from deck
-		array_delete(_deck, _index, 1);
-
-        // Store card instance in current hand
-        array_push(global.current_hand, _inst);
-    }
-	
-	reposition_cards();
-	show_debug_message($"[create_card]: {global.current_hand}");
 }
 
 /// @function Redetermines each card's position to ensure it's centered
@@ -130,3 +108,33 @@ function reposition_cards()
         }
     }
 }
+
+/// @function Pulls a card from the generated deck and places it in the user's current hand
+function draw_card(_amount, _deck)
+{
+	// No more cards to draw from
+	if (array_length(_deck) == 0) return;
+	
+    clear_hand();
+
+    // Draw x random cards
+    for (var i = 0; i < _amount; i++) 
+	{
+		var _index = irandom(array_length(_deck) - 1);
+        var _id = _deck[_index];
+
+        // Create the card instance
+        var _inst = create_card(_id);
+		
+		// Remove card from deck
+		array_delete(_deck, _index, 1);
+
+        // Store card instance in current hand
+        array_push(global.current_hand, _inst);
+    }
+	
+	reposition_cards();
+	show_debug_message($"[create_card]: {global.current_hand}");
+}
+
+#endregion

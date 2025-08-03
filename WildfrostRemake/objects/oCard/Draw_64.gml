@@ -1,4 +1,4 @@
-if (dragging) exit;
+if (!dragging) exit;
 
 // Draw card sprite
 draw_sprite_ext(sprite_index, 0, x, y, current_scale, current_scale, 0, c_white, 1);
@@ -35,3 +35,20 @@ if (has_stat(stats.hp))
 // Time
 if (has_stat(stats.time))
 	draw_text_ext_transformed(x, y - box_h + sprite_height/2, string(stats.time), 0, 100, current_scale, current_scale, 0);
+
+// Draw spell arrow
+if (dragging && card_type == CardType.Spell) 
+{
+    draw_set_color(c_red);
+
+    var end_x = mouse_x;
+    var end_y = mouse_y;
+
+    if (instance_exists(spell_target)) 
+    {
+        end_x = spell_target.x;
+        end_y = spell_target.y;
+    }
+
+    draw_line_width(x, y, end_x, end_y, 3);
+}
