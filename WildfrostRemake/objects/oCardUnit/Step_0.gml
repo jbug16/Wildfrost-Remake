@@ -23,21 +23,26 @@ if (mouse_check_button_released(mb_left) && global.dragged_card == id)
 	
 	depth = base_depth;
 	
-	// Check position to see if we can place a unit on the grid
-	if (place_meeting(x, y, oTestGrid)) // TODO: update this to only allow if the card is in a grid slot
+	// Check if dropped on a valid player slot
+	var _slot = instance_place(x, y, oSlot);
+
+	if (_slot != noone && !_slot.occupied && _slot.team == "player")
 	{
+		// Snap card to slot position
 		var _data = global.card_data[card_id];
-		
-		spawn_unit(
-            card_id,
-			300 + (HAND_SPACING * card_id), //temp grid
-			300,
-            "player"
-        );
-		
+
+		spawn_unit(card_id, _slot.x, _slot.y, _slot.team);
+
+		// Mark slot as occupied
+		_slot.occupied = true;
+		_slot.unit_ref = id;
+
 		play_card(id);
 	}
-	else reposition_cards(); // place the card back into the player's hand
+	else
+	{
+		reposition_cards(); // return card to hand
+	}
 }
 
 // Handle dragging
