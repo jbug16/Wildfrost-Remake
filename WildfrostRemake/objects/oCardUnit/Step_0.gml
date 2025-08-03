@@ -31,7 +31,7 @@ if (mouse_check_button_released(mb_left) && global.dragged_card == id)
 		// Snap card to slot position
 		var _data = global.card_data[card_id];
 
-		spawn_unit(card_id, _slot.x, _slot.y, _slot.team);
+		spawn_unit(id, _slot.x, _slot.y, _slot.team);
 
 		// Mark slot as occupied
 		_slot.occupied = true;

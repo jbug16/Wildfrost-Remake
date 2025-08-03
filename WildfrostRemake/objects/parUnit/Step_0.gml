@@ -6,7 +6,7 @@ hovered = (mouse_x > x - _half_w && mouse_x < x + _half_w &&
 		   mouse_y > y - _half_h && mouse_y < y + _half_h);
 
 // Scaling logic
-if (hovered && global.dragged_unit == noone) 
+if (hovered && global.dragged_unit == noone)
 	target_scale = hover_scale_factor;
 else
 	target_scale = 1;
