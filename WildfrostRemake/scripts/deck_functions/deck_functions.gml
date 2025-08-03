@@ -1,3 +1,4 @@
+/// @function Pushes any halo cards to the user's current hand
 function build_starting_hand()
 {
 	var _halo = get_cards_by_keyword(Keyword.Halo); // array of cards with halo
@@ -9,15 +10,16 @@ function build_starting_hand()
 		var _id = _halo[i];
 		
 		// Create the card instance
-        var _inst = spawn_hand(_id);
+        var _inst = create_card(_id);
 
         // Store card instance in current hand
-        array_push(global.current_hand, _inst);
+        if (global.current_hand != undefined) array_push(global.current_hand, _inst);
     }
 	
 	show_debug_message($"[build_starting_hand]: {global.current_hand}");
 }
 
+/// @function Returns an array of random cards the user can draw from
 function build_deck()
 {
 	var _deck = [];
@@ -43,8 +45,17 @@ function build_deck()
 	return _deck;
 }
 
+/// @function Removes any cards from the user's current hand
 function clear_hand()
 {
+	// Safety check
+	if (!is_array(global.current_hand)) 
+	{
+        global.current_hand = [];
+        return;
+    }
+	
+	// Remove cards in hand
 	for (var i = 0; i < array_length(global.current_hand); i++) 
 	{
         if (instance_exists(global.current_hand[i])) 
@@ -56,6 +67,7 @@ function clear_hand()
 	global.current_hand = [];
 }
 
+/// @function Pulls a card from the generated deck and places it in the user's current hand
 function draw_card(_amount, _deck)
 {
 	// No more cards to draw from
@@ -70,7 +82,7 @@ function draw_card(_amount, _deck)
         var _id = _deck[_index];
 
         // Create the card instance
-        var _inst = spawn_hand(_id);
+        var _inst = create_card(_id);
 		
 		// Remove card from deck
 		array_delete(_deck, _index, 1);
@@ -80,28 +92,11 @@ function draw_card(_amount, _deck)
     }
 	
 	reposition_cards();
-	show_debug_message($"[draw_card]: {global.current_hand}");
+	show_debug_message($"[create_card]: {global.current_hand}");
 }
 
-function spawn_hand(_id) 
-{
-    var _data = global.card_data[_id];
-    var _obj;
-
-    // Decide which object to spawn
-    if (_data.type == CardType.Unit) _obj = oCardUnit;
-    else if (_data.type == CardType.Spell) _obj = oCardSpell;
-    else _obj = parCard;
-
-    // create instance of the correct object
-    var _inst = instance_create_layer(oHandManager.x, oHandManager.y, "Cards", _obj);
-	array_push(global.current_grid, _inst);
-    setup_card(_inst, _id);
-
-    return _inst;
-}
-
-function reposition_cards() 
+/// @function Redetermines each card's position to ensure it's centered
+function reposition_cards()
 {
     var count = array_length(global.current_hand);
     if (count == 0) return;
