@@ -27,6 +27,7 @@
   },
   "name":"WildfrostRemake",
   "resources":[
+    {"id":{"name":"fntDefault","path":"fonts/fntDefault/fntDefault.yy",},},
     {"id":{"name":"oCard","path":"objects/oCard/oCard.yy",},},
     {"id":{"name":"oGame","path":"objects/oGame/oGame.yy",},},
     {"id":{"name":"oGridManager","path":"objects/oGridManager/oGridManager.yy",},},
@@ -36,6 +37,7 @@
     {"id":{"name":"card_functions","path":"scripts/card_functions/card_functions.yy",},},
     {"id":{"name":"constants","path":"scripts/constants/constants.yy",},},
     {"id":{"name":"deck_functions","path":"scripts/deck_functions/deck_functions.yy",},},
+    {"id":{"name":"draw_functions","path":"scripts/draw_functions/draw_functions.yy",},},
     {"id":{"name":"spell_functions","path":"scripts/spell_functions/spell_functions.yy",},},
     {"id":{"name":"unit_functions","path":"scripts/unit_functions/unit_functions.yy",},},
     {"id":{"name":"sBattleBackground","path":"sprites/sBattleBackground/sBattleBackground.yy",},},
