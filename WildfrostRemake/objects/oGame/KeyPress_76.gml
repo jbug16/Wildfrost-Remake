@@ -1,1 +1,0 @@
-f(global.current_grid);

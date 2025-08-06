@@ -56,8 +56,7 @@ global.current_hand = [];
 global.current_grid = [];
 
 // UI helpers
-global.dragged_card = noone;
-global.dragged_unit = noone;
+global.dragged_obj = noone;
 
 #endregion
 

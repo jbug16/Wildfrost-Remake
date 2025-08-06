@@ -176,7 +176,6 @@ function create_card(_id, _x = oHandManager.x, _y = oHandManager.y)
 
     f($"Created: {data.name}");
 
-    array_push(global.current_grid, card);
     return card;
 }
 
@@ -207,6 +206,7 @@ function play_card(_inst)
 				
 				instance_destroy(_inst);
             }
+			else array_push(global.current_grid, _inst);
 			
 			array_delete(global.current_hand, i, 1);
 			reposition_cards();
