@@ -1,5 +1,12 @@
 #region Enums
 
+// Sets the different stages of battle
+enum Phase {
+	Deployment,
+	Casting,
+	Comabt
+}
+
 // Determines what state the card is in
 enum State {
 	InHand,
@@ -54,6 +61,9 @@ global.current_hand = [];
 
 // An array to hold current cards on the grid
 global.current_grid = [];
+
+// Keeps track of the phase of the battle
+global.current_phase = noone;
 
 // UI helpers
 global.dragged_obj = noone;
