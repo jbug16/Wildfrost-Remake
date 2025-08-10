@@ -155,7 +155,7 @@ function create_stats(_hp, _atk, _time, _spr, _owner, _type)
 #region Card Creation
 
 /// @function Returns a card instance with defined stats
-function create_card(_id, _x = oHandManager.x, _y = oHandManager.y) 
+function create_card(_id, _x = 0, _y = 0) 
 {
     var data = global.card_data[_id];
 

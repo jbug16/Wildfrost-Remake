@@ -18,6 +18,8 @@ function build_starting_hand()
         if (global.current_hand != undefined) array_push(global.current_hand, _inst);
     }
 	
+	reposition_cards();
+	
 	show_debug_message($"[build_starting_hand]: {global.current_hand}");
 }
 
@@ -80,7 +82,7 @@ function reposition_cards()
     if (count == 0) return;
 
     // get manager width
-    var hand_width = sprite_get_width(oHandManager.sprite_index);
+    var hand_width = 1000;
 
     // default spacing
     var spacing = HAND_SPACING;
@@ -94,14 +96,17 @@ function reposition_cards()
     var total_width = (count - 1) * spacing;
 
     // center group inside manager
-    var start_x = oHandManager.x - (total_width / 2);
+	var center_x = display_get_gui_width()/2;
+	var center_y = display_get_gui_height()/2;
+	
+    var start_x = center_x - (total_width / 2);
 
     for (var i = 0; i < count; i++) {
         var card = global.current_hand[i];
 
         if (instance_exists(card)) {
             var target_x = start_x + (i * spacing);
-            var target_y = oHandManager.y;
+            var target_y = 660; //magic number
 
             card.x = target_x;
             card.y = target_y;

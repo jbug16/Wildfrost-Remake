@@ -17,7 +17,7 @@ function card_hover_effect(_normal_scale, _lerp_amt)
 	current_scale = lerp(current_scale, target_scale, _lerp_amt);
 }
 
-// @func 
+/// @func The card will follow the player's mouse
 function start_drag()
 {
 	if (mouse_check_button_pressed(mb_left) && hovered)
