@@ -1,10 +1,4 @@
-if (!visible_btn) exit;
-
-var mx = device_mouse_x_to_gui(0);
-var my = device_mouse_y_to_gui(0);
-
-// hover check (gui space)
-hover = (mx >= x && mx <= x + w && my >= y && my <= y + h) && enabled;
+hover = position_meeting(mouse_x, mouse_y, id) && enabled && global.dragged_obj == noone;
 
 if (hover && enabled && mouse_check_button_pressed(mb_left)) 
 {

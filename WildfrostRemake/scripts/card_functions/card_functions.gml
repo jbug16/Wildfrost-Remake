@@ -196,6 +196,8 @@ function play_card(_inst)
 			f("Deleting index: " + string(i));
 			var _data = global.card_data[_inst.card_id];
 			
+			// check keywords and end turn
+			
 			// Play spell effect
             if (_data.type == CardType.Spell) 
 			{

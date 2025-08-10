@@ -53,6 +53,9 @@ enum CardID {
 
 #region Globals
 
+// Random deck of cards
+global.deck = noone;
+
 // An array that stores all cards in the game with their properties
 global.card_data = array_create(CardID.Size);
 

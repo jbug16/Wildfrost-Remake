@@ -1,1 +1,1 @@
-f("[parButton]");
+f(label);

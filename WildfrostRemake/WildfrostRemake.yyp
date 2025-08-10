@@ -34,6 +34,7 @@
     {"id":{"name":"oGridManager","path":"objects/oGridManager/oGridManager.yy",},},
     {"id":{"name":"oPhaseManager","path":"objects/oPhaseManager/oPhaseManager.yy",},},
     {"id":{"name":"oSlot","path":"objects/oSlot/oSlot.yy",},},
+    {"id":{"name":"oStartBattle","path":"objects/oStartBattle/oStartBattle.yy",},},
     {"id":{"name":"parButton","path":"objects/parButton/parButton.yy",},},
     {"id":{"name":"rmBattle","path":"rooms/rmBattle/rmBattle.yy",},},
     {"id":{"name":"card_functions","path":"scripts/card_functions/card_functions.yy",},},
