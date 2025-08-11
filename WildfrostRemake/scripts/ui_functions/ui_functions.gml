@@ -97,7 +97,7 @@ function stop_drag()
 		// play if from hand
 		if (state == State.InHand && card_type == CardType.Unit)
 		{
-			play_card(id);
+			play_unit_card(id, _target_slot);
 			state = State.InBattle;
 		}
 	}
@@ -106,7 +106,7 @@ function stop_drag()
 		if (state == State.InHand)
 		{
 			if (card_type == CardType.Spell && instance_exists(spell_target))
-				play_card(id);
+				play_spell_card(id);
 			else
 				reposition_cards();
 		}

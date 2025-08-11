@@ -1,13 +1,9 @@
-function kill_unit(_id)
+function kill_unit(_inst)
 {
 	// TEST FUNCTION
 	// DOES NOT WORK
-	
-	if (!instance_exists(_id)) return; // safety check
 
-    var data = global.card_data[_id.card_id];
-
-    if (is_undefined(data)) return;
+    var _data = global.card_data[_inst.card_id];
 	
 	// find the slot this unit is in
 	var _slot = instance_place(x, y, oSlot);
@@ -17,8 +13,10 @@ function kill_unit(_id)
 		_slot.occupied = false;
 		_slot.unit_ref = noone;
 	}
+	
+	grid_remove(_inst);
 
-    f($"{data.name} died!");
+    f($"{_data.name} died!");
 
-    instance_destroy(_id); // actually remove the unit
+    instance_destroy(_inst); // actually remove the unit
 }

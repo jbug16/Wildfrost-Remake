@@ -1,5 +1,11 @@
 #region Enums
 
+// Determines what team the card is on
+enum Team {
+	Enemy,
+	Player
+}
+
 // Sets the different stages of battle
 enum Phase {
 	Deployment,
@@ -63,7 +69,9 @@ global.card_data = array_create(CardID.Size);
 global.current_hand = [];
 
 // An array to hold current cards on the grid
-global.current_grid = [];
+global.current_grid = array_create(2);
+global.current_grid[Team.Enemy] = array_create(6, noone);
+global.current_grid[Team.Player] = array_create(6, noone);
 
 // Keeps track of the phase of the battle
 global.current_phase = noone;

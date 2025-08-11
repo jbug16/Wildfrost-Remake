@@ -26,7 +26,7 @@ function init_card_data()
 	    type: CardType.Unit, 
 		subtype: UnitType.Mercenary,
 	    sprite: sMercenaryCard,
-		keywords: [],
+		keywords: [Keyword.Flash],
 		
 		hp: 6,
 		attack: 4,
@@ -119,6 +119,19 @@ function has_stat(_stat)
 	return _stat != -1;
 }
 
+function has_keyword(_inst, _keyword)
+{
+	var _data = global.card_data[_inst.card_id];
+	return array_contains(_data.keywords, _keyword);
+}
+
+function array_index_of(_arr, _val) 
+{
+    var n = array_length(_arr);
+    for (var i = 0; i < n; i++) if (_arr[i] == _val) return i;
+    return -1;
+}
+
 #endregion
 
 #region Card Utility Functions
@@ -183,39 +196,36 @@ function create_card(_id, _x = 0, _y = 0)
 
 #region Gameplay
 
-/// @function These actions happen when a user plays a card
-function play_card(_inst) 
+function remove_card_from_hand(_inst)
 {
-    var _len = array_length(global.current_hand);
+	var idx = array_index_of(global.current_hand, _inst);
+    if (idx != -1) array_delete(global.current_hand, idx, 1);
+	reposition_cards();
+}
 
-	for (var i = 0; i < _len; i++) 
+/// @function Place the unit card on the grid and update the player's hand
+function play_unit_card(_inst, _slot) 
+{
+    grid_place(_inst, Team.Player, _slot.grid_row, _slot.grid_col);
+	remove_card_from_hand(_inst);
+	
+	if (has_keyword(_inst, Keyword.Flash)) end_turn();
+}
+
+/// @func Execute the spell card's effect and update the player's hand
+function play_spell_card(_inst)
+{
+	var _data = global.card_data[_inst.card_id];
+	
+	// Play spell effect
+	if (!is_undefined(_data.effect)) 
 	{
-		// If this is the card we are dragging
-		if (global.current_hand[i] == _inst) 
-		{
-			f("Deleting index: " + string(i));
-			var _data = global.card_data[_inst.card_id];
-			
-			// check keywords and end turn
-			
-			// Play spell effect
-            if (_data.type == CardType.Spell) 
-			{
-                if (!is_undefined(_data.effect)) 
-				{
-                    script_execute(_data.effect, _inst.spell_target);
-                }
-				
-				instance_destroy(_inst);
-            }
-			else array_push(global.current_grid, _inst);
-			
-			array_delete(global.current_hand, i, 1);
-			reposition_cards();
-			
-			break;
-		}
-	}
+        script_execute(_data.effect, _inst.spell_target);
+    }
+	
+	// Update player's hand
+	remove_card_from_hand(_inst);
+	instance_destroy(_inst);
 }
 
 #endregion

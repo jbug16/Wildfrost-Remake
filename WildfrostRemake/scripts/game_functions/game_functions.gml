@@ -13,15 +13,42 @@ function start_battle()
 	draw_card(6, global.deck);
 }
 
-/// @func Ends the player's turn
+function start_combat(_team)
+{
+	for (var i = 0; i < 6; i++) {
+	    var u = global.current_grid[_team][i];
+	    if (instance_exists(u)) {
+	        f($"Team: {_team} -- Slot: {i+1}");
+			
+			// Decrease time counter
+			u.stats.time--;
+			
+			// Check if it is 0
+			if (u.stats.time <= 0)
+			{
+				// Attack frontmost enemy unit
+				f("Attack!");
+				
+				// Reset time counter
+				u.stats.time = global.card_data[u.card_id].time;
+			}
+	    }
+	}
+}
+
+/// @func Ends the player's turn and starts combat
 function end_turn()
 {
 	// Change phase to combat
 	global.current_phase = Phase.Comabt;
 	
-	// Trigger combat phase logic:
-	// 1. Loop through all units
+	// Trigger combat phase logic
+	// 1. Loop through all slots
 	// 2. Decrement their time counters
 	// 3. If counter reaches 0, perform attack behavior
-	// 4. Ensure units can die and are removed from the slot when hp ≤ 0
+	
+	start_combat(Team.Enemy);
+	start_combat(Team.Player);
+	
+	global.current_phase = Phase.Casting;
 }
