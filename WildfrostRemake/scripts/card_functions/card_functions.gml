@@ -26,7 +26,7 @@ function init_card_data()
 	    type: CardType.Unit, 
 		subtype: UnitType.Mercenary,
 	    sprite: sMercenaryCard,
-		keywords: [Keyword.Flash],
+		keywords: [Keyword.Flicker],
 		
 		hp: 6,
 		attack: 4,
@@ -45,7 +45,7 @@ function init_card_data()
 		subtype: SpellType.Damage,
 	    effect: spell_attack, 
 	    sprite: sSpellCard,
-		keywords: [],
+		keywords: [Keyword.Flash],
 		
 		attack: 4
 	};
@@ -58,7 +58,7 @@ function init_card_data()
 		subtype: SpellType.Heal,
 	    effect: spell_heal, 
 	    sprite: sSpellCard,
-		keywords: [],
+		keywords: [Keyword.Flash],
 		
 		attack: 2
 	};
@@ -150,6 +150,20 @@ function add_keyword_to_card(_id, _keyword)
     }
 }
 
+/// @function Removes a keyword from a card
+function remove_keyword_from_card(_id, _keyword)
+{
+	var _card = global.card_data[_id];
+
+    if (is_undefined(_card)) return; // safety check
+
+    // Only remove if the keyword exists
+    if (array_contains(_card.keywords, _keyword)) 
+	{
+        array_delete(_card.keywords, _keyword, 1);
+    }
+}
+
 /// @function Returns a struct for card stats
 function create_stats(_hp, _atk, _time, _spr, _owner, _type) 
 {
@@ -206,10 +220,17 @@ function remove_card_from_hand(_inst)
 /// @function Place the unit card on the grid and update the player's hand
 function play_unit_card(_inst, _slot) 
 {
+	// Place card on the grid in the correct slot
     grid_place(_inst, Team.Player, _slot.grid_row, _slot.grid_col);
+	
+	// Update player's hand
 	remove_card_from_hand(_inst);
 	
-	if (has_keyword(_inst, Keyword.Flash)) end_turn();
+	// Check for any keywords
+	// Flash	- permanent “free” play. no matter how many times you play it, it won’t end your turn
+	// Flicker	- one-time “free” play. after that first use, the flicker property is removed from the card
+	if (!has_keyword(_inst, Keyword.Flash) and !has_keyword(_inst, Keyword.Flicker)) end_turn();
+	else if (has_keyword(_inst, Keyword.Flicker)) remove_keyword_from_card(_inst.card_id, Keyword.Flicker);
 }
 
 /// @func Execute the spell card's effect and update the player's hand
@@ -222,6 +243,10 @@ function play_spell_card(_inst)
 	{
         script_execute(_data.effect, _inst.spell_target);
     }
+	
+	// Check for any keywords
+	if (!has_keyword(_inst, Keyword.Flash) and !has_keyword(_inst, Keyword.Flicker)) end_turn();
+	else if (has_keyword(_inst, Keyword.Flicker)) remove_keyword_from_card(_inst.card_id, Keyword.Flicker);
 	
 	// Update player's hand
 	remove_card_from_hand(_inst);

@@ -15,6 +15,7 @@ function start_battle()
 
 function start_combat(_team)
 {
+	// Loop through team units currently placed on the grid
 	for (var i = 0; i < 6; i++) {
 	    var u = global.current_grid[_team][i];
 	    if (instance_exists(u)) {
@@ -39,6 +40,7 @@ function start_combat(_team)
 /// @func Ends the player's turn and starts combat
 function end_turn()
 {
+	f("Turn ended");
 	// Change phase to combat
 	global.current_phase = Phase.Comabt;
 	
@@ -50,5 +52,6 @@ function end_turn()
 	start_combat(Team.Enemy);
 	start_combat(Team.Player);
 	
+	// Combat phase is done and we can now cast again
 	global.current_phase = Phase.Casting;
 }
