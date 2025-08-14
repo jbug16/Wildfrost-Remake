@@ -220,6 +220,8 @@ function remove_card_from_hand(_inst)
 /// @function Place the unit card on the grid and update the player's hand
 function play_unit_card(_inst, _slot) 
 {
+	var _data = global.card_data[_inst.card_id];
+	
 	// Place card on the grid in the correct slot
     grid_place(_inst, Team.Player, _slot.grid_row, _slot.grid_col);
 	
@@ -229,6 +231,7 @@ function play_unit_card(_inst, _slot)
 	// Check for any keywords
 	// Flash	- permanent “free” play. no matter how many times you play it, it won’t end your turn
 	// Flicker	- one-time “free” play. after that first use, the flicker property is removed from the card
+	if (_data.subtype == UnitType.Commander) return;
 	if (!has_keyword(_inst, Keyword.Flash) and !has_keyword(_inst, Keyword.Flicker)) end_turn();
 	else if (has_keyword(_inst, Keyword.Flicker)) remove_keyword_from_card(_inst.card_id, Keyword.Flicker);
 }

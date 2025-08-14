@@ -139,7 +139,7 @@ function draw_card(_amount, _deck)
     }
 	
 	reposition_cards();
-	show_debug_message($"[create_card]: {global.current_hand}");
+	//show_debug_message($"[create_card]: {global.current_hand}");
 }
 
 #endregion
