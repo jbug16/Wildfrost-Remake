@@ -5,6 +5,7 @@ function start_battle()
 	global.current_phase = Phase.Casting;
 	
 	// Spawn first wave
+	start_next_wave(1);
 	
 	// Get rid of button
 	instance_destroy(id);

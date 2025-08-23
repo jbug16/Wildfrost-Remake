@@ -76,6 +76,9 @@ global.current_grid[Team.Player] = array_create(6, noone);
 // Keeps track of the phase of the battle
 global.current_phase = noone;
 
+// Keeps track of the current wave
+global.wave = 0;
+
 // UI helpers
 global.dragged_obj = noone;
 

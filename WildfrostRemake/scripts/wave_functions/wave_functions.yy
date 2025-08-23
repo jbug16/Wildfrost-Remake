@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"wave_functions",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"wave_functions",
+  "parent":{
+    "name":"Functions",
+    "path":"folders/Scripts/Functions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

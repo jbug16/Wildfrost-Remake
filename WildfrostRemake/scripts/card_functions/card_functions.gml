@@ -182,7 +182,7 @@ function create_stats(_hp, _atk, _time, _spr, _owner, _type)
 #region Card Creation
 
 /// @function Returns a card instance with defined stats
-function create_card(_id, _x = 0, _y = 0) 
+function create_card(_id, _team = Team.Player, _x = 0, _y = 0) 
 {
     var data = global.card_data[_id];
 
@@ -191,17 +191,18 @@ function create_card(_id, _x = 0, _y = 0)
     card.card_id = _id;
     card.card_type = data.type;
     card.sprite_index = data.sprite;
+	card.can_drag = _team == Team.Player ? true : false;
 
     card.stats = create_stats(
         variable_struct_exists(data, "hp") ? data.hp : -1,
         variable_struct_exists(data, "attack") ? data.attack : -1,
         variable_struct_exists(data, "time") ? data.time : -1,
         variable_struct_exists(data, "sprite") ? data.sprite : undefined,
-        "player",
+        variable_struct_exists(data, "owner") ? _team : undefined,
         variable_struct_exists(data, "subtype") ? data.subtype : undefined
     );
 
-    f($"Created: {data.name}");
+    f($"Created: {data.name} for Team {_team}");
 
     return card;
 }

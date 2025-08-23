@@ -2,6 +2,7 @@
 card_id = noone;
 card_type = noone;
 stats = undefined;
+can_drag = true;
 
 // UI animations
 dragging = false;

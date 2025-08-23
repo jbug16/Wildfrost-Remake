@@ -20,7 +20,7 @@ function build_starting_hand()
 	
 	reposition_cards();
 	
-	show_debug_message($"[build_starting_hand]: {global.current_hand}");
+	f($"[build_starting_hand]: {global.current_hand}");
 }
 
 /// @function Returns an array of random cards the user can draw from

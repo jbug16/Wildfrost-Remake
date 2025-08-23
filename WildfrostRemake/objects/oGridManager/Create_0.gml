@@ -57,7 +57,7 @@ for (var r = 0; r < grid_rows; r++)
 
         slot_inst.grid_row = r;
         slot_inst.grid_col = c;
-        slot_inst.team = (c < 3) ? "player" : "enemy";
+        slot_inst.team = (c < 3) ? Team.Player : Team.Enemy;
 		
 		show_debug_message(slot_inst.team);
     }

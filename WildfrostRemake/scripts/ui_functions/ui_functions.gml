@@ -73,7 +73,7 @@ function stop_drag()
 	}
 
 	// valid new slot
-	var is_valid_slot = (_target_slot != noone && !_target_slot.occupied && _target_slot.team == "player");
+	var is_valid_slot = (_target_slot != noone && !_target_slot.occupied && _target_slot.team == Team.Player);
 
 	if (is_valid_slot)
 	{

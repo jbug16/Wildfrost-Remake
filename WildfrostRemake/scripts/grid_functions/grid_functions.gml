@@ -1,14 +1,24 @@
 function slot_index(_team, _row, _col) 
 {
-    if (_team == Team.Enemy) {
-        // enemy cols are 3..5; convert to 0..2
-        var c = _col - 3;
-        return (_row * 3) + c;          // 0..5
-    } else {
-        // player wants right->left (2,1,0)
-        var c = 2 - _col;
-        return (_row * 3) + c;          // 0..5
-    }
+    //if (_team == Team.Enemy) {
+    //    // enemy cols are 3..5; convert to 0..2
+    //    var c = _col - 3;
+    //    return (_row * 3) + c;          // 0..5
+    //} else {
+    //    // player wants right->left (2,1,0)
+    //    var c = 2 - _col;
+    //    return (_row * 3) + c;          // 0..5
+    //}
+	return _row * 3 + _col; // 0..5
+}
+
+function get_slot_inst(_team, _row, _col) 
+{
+    var want_col = (_team == Team.Enemy) ? (_col + 3) : _col;
+    var result = noone;
+    with (oSlot) if (team == _team && grid_row == _row && grid_col == want_col) { result = id; break; }
+	f(result);
+    return result;
 }
 
 function grid_place(_unit, _team, _row, _col) 

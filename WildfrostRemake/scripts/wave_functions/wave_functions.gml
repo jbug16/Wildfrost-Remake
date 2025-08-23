@@ -1,0 +1,34 @@
+function start_next_wave(_num)
+{
+	// Make sure this only gets called once
+	// Spawn enemies
+	var _enemies = oWaveManager.wave_enemies[_num];
+	for (var i = 0; i < array_length(_enemies); i++) 
+	{
+	    spawn_enemy(_enemies[i]);
+	}
+}
+
+function spawn_enemy(_enemy)
+{
+	// 1) Create a unit from a card id (same as player)
+	var _unit = create_card(_enemy.card_id, Team.Enemy);
+	_unit.state = State.InBattle;
+
+	// 2) Place it using the same grid placement
+	grid_place(_unit, Team.Enemy, _enemy.row, _enemy.col);
+		
+	// 3) Spawn the enemy
+	var _slot = get_slot_inst(Team.Enemy, _enemy.row, _enemy.col);
+	if (_slot != noone) 
+	{
+	    with (_slot) 
+		{
+	        occupied = true;
+	        unit_ref = _unit;
+	    }
+		
+	    _unit.x = _slot.x;
+	    _unit.y = _slot.y;
+	}
+}
