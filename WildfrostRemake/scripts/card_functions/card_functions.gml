@@ -165,14 +165,14 @@ function remove_keyword_from_card(_id, _keyword)
 }
 
 /// @function Returns a struct for card stats
-function create_stats(_hp, _atk, _time, _spr, _owner, _type) 
+function create_stats(_hp, _atk, _time, _spr, _team, _type) 
 {
     return {
         hp: _hp,
         attack: _atk,
         time: _time,
         sprite: _spr,
-        owner: _owner,
+        team: _team,
         type: _type
     };
 }
@@ -192,17 +192,18 @@ function create_card(_id, _team = Team.Player, _x = 0, _y = 0)
     card.card_type = data.type;
     card.sprite_index = data.sprite;
 	card.can_drag = _team == Team.Player ? true : false;
+	card.team = _team;
 
     card.stats = create_stats(
         variable_struct_exists(data, "hp") ? data.hp : -1,
         variable_struct_exists(data, "attack") ? data.attack : -1,
         variable_struct_exists(data, "time") ? data.time : -1,
         variable_struct_exists(data, "sprite") ? data.sprite : undefined,
-        variable_struct_exists(data, "owner") ? _team : undefined,
+        variable_struct_exists(data, "team") ? _team : undefined,
         variable_struct_exists(data, "subtype") ? data.subtype : undefined
     );
 
-    f($"Created: {data.name} for Team {_team}");
+    f($"Created: {data.name} for Team {get_team(_team)}");
 
     return card;
 }
@@ -255,6 +256,9 @@ function play_spell_card(_inst)
 	// Update player's hand
 	remove_card_from_hand(_inst);
 	instance_destroy(_inst);
+	
+	// Handle death
+	if (spell_target.stats.hp <= 0) kill_unit(spell_target);
 }
 
 #endregion

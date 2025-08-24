@@ -3,6 +3,7 @@ card_id = noone;
 card_type = noone;
 stats = undefined;
 can_drag = true;
+team = undefined;
 
 // UI animations
 dragging = false;

@@ -14,3 +14,8 @@ function get_phase(_phase)
 		case Phase.Comabt: return "Combat";
 	}
 }
+
+function get_team(_team)
+{
+	return _team == Team.Player ? "player" : "enemy";
+}

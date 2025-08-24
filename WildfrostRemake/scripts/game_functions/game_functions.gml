@@ -29,7 +29,16 @@ function start_combat(_team)
 			if (u.stats.time <= 0)
 			{
 				// Attack frontmost enemy unit
-				f("Attack!");
+				var _target = find_attack_target(u);
+				if (instance_exists(_target)) 
+				{
+			        unit_attack(_target, u);
+					
+			        if (instance_exists(_target) && _target.stats.hp <= 0) 
+					{
+			            kill_unit(_target);
+			        }
+			    }
 				
 				// Reset time counter
 				u.stats.time = global.card_data[u.card_id].time;
