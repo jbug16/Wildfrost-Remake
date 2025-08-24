@@ -18,38 +18,47 @@ function kill_unit(_inst)
     if (!instance_exists(_inst)) return;
 
     var _data = global.card_data[_inst.card_id];
-
-    // Free the slots
-    grid_remove(_inst);
+	
+	f($"{get_team(_inst.team)}'s {_data.name} died!");
 
     // Pull back-row forward if front died
     //if (_inst.team == Team.Player || _inst.team == Team.Enemy) {
     //    grid_shift_column_forward(_inst.team, _inst.col);
     //}
 
-    // Clear any global references that might still point at this unit
+    // Check if the unit killed was a commander
+	// If the player's CO dies, the player loses.
+	// If the enemy's CO dies, the player wins.
+    var was_commander = (_data.subtype == UnitType.Commander);
+    if (was_commander)
+	{
+		if (_inst.team == Team.Enemy)
+		{
+			victory();
+		}
+        else if (_inst.team == Team.Player)
+		{
+			fail();
+		}
+    }
+
+    // If no enemies remain, go to next wave
+    if (!any_enemies_alive())
+	{
+		start_next_wave();
+		
+        //with (oWaveManager) alarm[0] = room_speed * 1; // small delay → next wave
+    }
+	
+	// Clean-up
+	
+	// Free the slots
+    grid_remove(_inst);
+	
+	// Clear any global references that might still point at this unit
     if (instance_exists(spell_target) && spell_target == _inst) spell_target = noone;
     if (global.dragged_obj == _inst) global.dragged_obj = noone;
-
-    // Announce & destroy
-    f($"{_data.name} died!");
+	
+	// Destroy instance
     instance_destroy(_inst);
-
-    //// Win/Lose / Next-wave checks
-	//var was_boss      = (variable_struct_exists(_data, "is_boss") && _data.is_boss);
-    //var was_commander = (_data.subtype == UnitType.Commander);
-    //if (was_commander && _inst.team == Team.Player) {
-    //    defeat(); // player commander died
-    //    return;
-    //}
-    //if (was_boss) {
-    //    victory(); // boss died
-    //    return;
-    //}
-
-    //// If no enemies remain, advance waves or win
-    //if (!any_enemies_alive()) {
-    //    if (global.wave >= total_waves) victory();
-    //    else with (oWaveManager) alarm[0] = room_speed * 1; // small delay → next wave
-    //}
 }

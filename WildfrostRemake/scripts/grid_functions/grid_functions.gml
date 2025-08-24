@@ -57,3 +57,14 @@ function find_attack_target(_attacker)
 	var _target = get_front_slot(_other_team, _attacker.row);
 	if (instance_exists(_target)) return _target;
 }
+
+/// @desc Returns true if there is at least one enemy unit on the grid
+function any_enemies_alive() 
+{
+    for (var i = 0; i < 6; i++) 
+	{
+        var u = global.current_grid[Team.Enemy][i];
+        if (instance_exists(u)) return true;
+    }
+    return false;
+}

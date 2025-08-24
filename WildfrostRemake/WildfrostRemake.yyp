@@ -37,6 +37,8 @@
     {"id":{"name":"oWaveManager","path":"objects/oWaveManager/oWaveManager.yy",},},
     {"id":{"name":"parButton","path":"objects/parButton/parButton.yy",},},
     {"id":{"name":"rmBattle","path":"rooms/rmBattle/rmBattle.yy",},},
+    {"id":{"name":"rmFail","path":"rooms/rmFail/rmFail.yy",},},
+    {"id":{"name":"rmVictory","path":"rooms/rmVictory/rmVictory.yy",},},
     {"id":{"name":"card_functions","path":"scripts/card_functions/card_functions.yy",},},
     {"id":{"name":"constants","path":"scripts/constants/constants.yy",},},
     {"id":{"name":"debug","path":"scripts/debug/debug.yy",},},
@@ -60,6 +62,8 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"rmBattle","path":"rooms/rmBattle/rmBattle.yy",},},
+    {"roomId":{"name":"rmVictory","path":"rooms/rmVictory/rmVictory.yy",},},
+    {"roomId":{"name":"rmFail","path":"rooms/rmFail/rmFail.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

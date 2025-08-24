@@ -5,7 +5,7 @@ function start_battle()
 	global.current_phase = Phase.Casting;
 	
 	// Spawn first wave
-	start_next_wave(1);
+	start_next_wave();
 	
 	// Get rid of button
 	instance_destroy(id);
@@ -16,11 +16,12 @@ function start_battle()
 
 function start_combat(_team)
 {
+	f("Starting combat...");
 	// Loop through team units currently placed on the grid
 	for (var i = 0; i < 6; i++) {
 	    var u = global.current_grid[_team][i];
 	    if (instance_exists(u)) {
-	        f($"Team: {_team} -- Slot: {i+1}");
+	        //f($"Team: {_team} -- Slot: {i+1}");
 			
 			// Decrease time counter
 			u.stats.time--;
@@ -64,4 +65,14 @@ function end_turn()
 	
 	// Combat phase is done and we can now cast again
 	global.current_phase = Phase.Casting;
+}
+
+function victory()
+{
+	room_goto(rmVictory);
+}
+
+function fail()
+{
+	room_goto(rmFail);
 }

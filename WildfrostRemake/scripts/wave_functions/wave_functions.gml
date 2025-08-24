@@ -1,8 +1,12 @@
-function start_next_wave(_num)
+function start_next_wave()
 {
-	// Make sure this only gets called once
 	// Spawn enemies
-	var _enemies = oWaveManager.wave_enemies[_num];
+	global.wave++;
+	if (global.wave > oWaveManager.total_waves) return;
+	
+	f($"Starting wave {global.wave}");
+	
+	var _enemies = oWaveManager.wave_enemies[global.wave];
 	for (var i = 0; i < array_length(_enemies); i++) 
 	{
 	    spawn_enemy(_enemies[i]);

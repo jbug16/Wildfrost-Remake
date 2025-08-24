@@ -1,3 +1,4 @@
+total_waves = 3;
 wave_enemies = [
     [], // empty, unused
     [ 
