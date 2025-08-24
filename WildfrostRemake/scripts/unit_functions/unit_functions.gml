@@ -41,14 +41,6 @@ function kill_unit(_inst)
 			fail();
 		}
     }
-
-    // If no enemies remain, go to next wave
-    if (!any_enemies_alive())
-	{
-		start_next_wave();
-		
-        //with (oWaveManager) alarm[0] = room_speed * 1; // small delay → next wave
-    }
 	
 	// Clean-up
 	
@@ -61,4 +53,12 @@ function kill_unit(_inst)
 	
 	// Destroy instance
     instance_destroy(_inst);
+	
+	// If no enemies remain, go to next wave
+    if (!any_enemies_alive())
+	{
+		//start_next_wave();
+		f("Starting next wave...");
+		with (oWaveManager) alarm[0] = 60 * 2; // 2-sec delay -> next wave
+    }
 }
