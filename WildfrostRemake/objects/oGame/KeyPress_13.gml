@@ -1,4 +1,6 @@
 /// @desc Move all units forward
+if (instance_exists(oConsoleManager) && oConsoleManager.console.open) exit;
+
 for (var i = 0; i < 6; i++) 
 {
     var u = global.current_grid[Team.Player][i];

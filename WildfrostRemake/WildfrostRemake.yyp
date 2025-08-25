@@ -30,6 +30,7 @@
   "resources":[
     {"id":{"name":"fntDefault","path":"fonts/fntDefault/fntDefault.yy",},},
     {"id":{"name":"oCard","path":"objects/oCard/oCard.yy",},},
+    {"id":{"name":"oConsoleManager","path":"objects/oConsoleManager/oConsoleManager.yy",},},
     {"id":{"name":"oGame","path":"objects/oGame/oGame.yy",},},
     {"id":{"name":"oGridManager","path":"objects/oGridManager/oGridManager.yy",},},
     {"id":{"name":"oSlot","path":"objects/oSlot/oSlot.yy",},},

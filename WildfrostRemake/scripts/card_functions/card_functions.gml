@@ -26,7 +26,7 @@ function init_card_data()
 	    type: CardType.Unit, 
 		subtype: UnitType.Mercenary,
 	    sprite: sMercenaryCard,
-		keywords: [Keyword.Flicker],
+		keywords: [],
 		
 		hp: 6,
 		attack: 4,
