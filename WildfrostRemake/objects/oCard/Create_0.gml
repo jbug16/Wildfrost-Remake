@@ -4,6 +4,8 @@ card_type = noone;
 stats = undefined;
 can_drag = true;
 team = undefined;
+row = undefined;
+col = undefined;
 
 // UI animations
 dragging = false;

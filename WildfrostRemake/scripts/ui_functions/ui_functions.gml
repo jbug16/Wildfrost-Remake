@@ -100,6 +100,7 @@ function stop_drag()
 			play_unit_card(id, _target_slot);
 			state = State.InBattle;
 		}
+		else move_unit(id, _target_slot.grid_row, _target_slot.grid_col);
 	}
 	else
 	{

@@ -21,11 +21,6 @@ function kill_unit(_inst)
 	
 	f($"{get_team(_inst.team)}'s {_data.name} died!");
 
-    // Pull back-row forward if front died
-    //if (_inst.team == Team.Player || _inst.team == Team.Enemy) {
-    //    grid_shift_column_forward(_inst.team, _inst.col);
-    //}
-
     // Check if the unit killed was a commander
 	// If the player's CO dies, the player loses.
 	// If the enemy's CO dies, the player wins.
@@ -44,6 +39,10 @@ function kill_unit(_inst)
 	
 	// Clean-up
 	
+	// Save needed data
+	var _team = _inst.team;
+	var _behind = get_unit_behind(_inst);
+	
 	// Free the slots
     grid_remove(_inst);
 	
@@ -54,11 +53,15 @@ function kill_unit(_inst)
 	// Destroy instance
     instance_destroy(_inst);
 	
+	// Move unit behind to front
+	advance_unit_toward_front(_behind);
+	fill_all_gaps(_team);
+	
 	// If no enemies remain, go to next wave
     if (!any_enemies_alive())
 	{
 		//start_next_wave();
 		f("Starting next wave...");
-		with (oWaveManager) alarm[0] = 60 * 2; // 2-sec delay -> next wave
+		with (oWaveManager) alarm[0] = 60 * 2; // 2 sec delay -> next wave
     }
 }

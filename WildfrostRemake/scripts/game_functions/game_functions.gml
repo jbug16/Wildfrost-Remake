@@ -1,3 +1,9 @@
+function reset_variables()
+{
+	// Variables that need to be reset when the game restarts
+	global.wave = 0;
+}
+
 /// @func Starts the battle officially after the deployment phase
 function start_battle()
 {
@@ -12,17 +18,27 @@ function start_battle()
 	
 	// Draw first 6 cards
 	draw_card(6, global.deck);
+	
+	// Move units forward
+	fill_all_gaps(Team.Player);
+	fill_all_gaps(Team.Enemy);
 }
 
 function start_combat(_team)
 {
 	f("Starting combat...");
+	
+	// Move units forward
+	fill_all_gaps(Team.Player);
+	fill_all_gaps(Team.Enemy);
+	
 	// Loop through team units currently placed on the grid
-	for (var i = 0; i < 6; i++) {
+	for (var i = 0; i < 6; i++) 
+	{
 	    var u = global.current_grid[_team][i];
-	    if (instance_exists(u)) {
-	        //f($"Team: {_team} -- Slot: {i+1}");
-			
+	    
+		if (instance_exists(u)) 
+		{
 			// Decrease time counter
 			u.stats.time--;
 			

@@ -203,7 +203,7 @@ function create_card(_id, _team = Team.Player, _x = 0, _y = 0)
         variable_struct_exists(data, "subtype") ? data.subtype : undefined
     );
 
-    f($"Created: {data.name} for Team {get_team(_team)}");
+    //f($"Created: {data.name} for Team {get_team(_team)}");
 
     return card;
 }

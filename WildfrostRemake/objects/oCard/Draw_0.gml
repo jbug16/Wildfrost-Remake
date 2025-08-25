@@ -6,5 +6,3 @@ draw_sprite_ext(sprite_index, 0, x, y, current_scale, current_scale, 0, c_white,
 // Draw stats
 draw_set_settings(fa_center, fa_middle);
 draw_stats();
-
-draw_stats(20, 28, 4);
