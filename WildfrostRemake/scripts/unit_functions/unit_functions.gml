@@ -47,7 +47,7 @@ function kill_unit(_inst)
     grid_remove(_inst);
 	
 	// Clear any global references that might still point at this unit
-    if (instance_exists(spell_target) && spell_target == _inst) spell_target = noone;
+	with (_inst) if (instance_exists(spell_target) && spell_target == _inst) spell_target = noone;
     if (global.dragged_obj == _inst) global.dragged_obj = noone;
 	
 	// Destroy instance
