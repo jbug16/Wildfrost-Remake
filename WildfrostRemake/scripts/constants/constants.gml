@@ -10,7 +10,7 @@ enum Team {
 enum Phase {
 	Deployment,
 	Casting,
-	Comabt
+	Combat
 }
 
 // Determines what state the card is in

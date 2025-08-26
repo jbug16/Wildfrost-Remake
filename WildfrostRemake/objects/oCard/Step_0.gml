@@ -6,7 +6,7 @@ card_hover_effect(1, 0.25); // default scale, lerp amount
 
 #region Movement
 
-if (global.current_phase == Phase.Comabt) exit;
+if (global.current_phase == Phase.Combat) exit;
 if (!can_drag) exit;
 start_drag();
 update_drag();

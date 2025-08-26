@@ -11,7 +11,7 @@ function get_phase(_phase)
 	{
 		case Phase.Deployment: return "Deployment";
 		case Phase.Casting: return "Casting";
-		case Phase.Comabt: return "Combat";
+		case Phase.Combat: return "Combat";
 	}
 }
 

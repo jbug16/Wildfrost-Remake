@@ -69,7 +69,7 @@ function end_turn()
 {
 	f("Turn ended");
 	// Change phase to combat
-	global.current_phase = Phase.Comabt;
+	global.current_phase = Phase.Combat;
 	
 	// Trigger combat phase logic
 	// 1. Loop through all slots
