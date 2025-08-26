@@ -1,4 +1,5 @@
 /// @desc Change phase
+if (!global.dev_mode) exit;
 if (instance_exists(oConsoleManager) && oConsoleManager.console.open) exit;
 
 global.current_phase++;

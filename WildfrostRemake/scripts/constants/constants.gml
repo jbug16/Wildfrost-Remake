@@ -82,6 +82,9 @@ global.wave = 0;
 // UI helpers
 global.dragged_obj = noone;
 
+// Debug
+global.dev_mode = false;
+
 #endregion
 
 #region Macros

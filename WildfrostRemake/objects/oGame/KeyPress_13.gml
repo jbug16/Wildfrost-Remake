@@ -1,4 +1,5 @@
 /// @desc Move all units forward
+if (!global.dev_mode) exit;
 if (instance_exists(oConsoleManager) && oConsoleManager.console.open) exit;
 
 for (var i = 0; i < 6; i++) 

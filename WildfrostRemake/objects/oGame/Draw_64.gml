@@ -1,3 +1,5 @@
+if (!global.dev_mode) exit;
+
 draw_set_settings(fa_left, fa_top, c_white);
 
 draw_rectangle(0, 0, 200, 90, false);

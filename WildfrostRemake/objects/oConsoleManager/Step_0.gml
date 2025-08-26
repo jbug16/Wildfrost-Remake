@@ -19,14 +19,11 @@ if (console.open) {
     }
 
     // backspace (hold to repeat)
-    if (keyboard_check(vk_backspace)) {
-        if (string_length(console.input) > 0) {
-            // faster repeat feel
-            if (keyboard_check_pressed(vk_backspace) || (current_time div 50) mod 2 == 0) {
-                console.input = string_delete(console.input, string_length(console.input), 1);
-            }
-        }
-    }
+    if (keyboard_check_pressed(vk_backspace)) {
+	    if (string_length(console.input) > 0) {
+	        console.input = string_delete(console.input, string_length(console.input), 1);
+	    }
+	}
 
     // submit
     if (keyboard_check_pressed(vk_enter)) {

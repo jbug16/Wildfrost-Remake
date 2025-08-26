@@ -5,8 +5,8 @@ var w = display_get_gui_width();
 var x1 = 16, y1 = 16;
 var x2 = w - 16, y2 = y1 + (max_log_lines + 2) * row_h + 16;
 
+draw_set_settings(fa_left, fa_top, c_black);
 draw_set_alpha(0.8);
-draw_set_color(c_black);
 draw_rectangle(x1, y1, x2, y2, false);
 draw_set_alpha(1);
 

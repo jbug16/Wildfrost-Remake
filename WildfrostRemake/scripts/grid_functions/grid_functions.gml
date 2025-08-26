@@ -54,13 +54,16 @@ function grid_place(_unit, _team, _row, _col)
     _unit.row  = _row;
     _unit.col  = _col;
 
-    // mark slot + snap (optional but handy)
+    // mark slot + snap
     var s = get_slot_inst(_team, _row, _col);
-    if (s != noone) {
+    if (s != noone) 
+	{
         s.occupied = true;
         s.unit_ref = _unit;
         _unit.x = s.x; _unit.y = s.y;
     }
+	
+	fill_all_gaps(_team);
 }
 
 function grid_remove(_unit) 

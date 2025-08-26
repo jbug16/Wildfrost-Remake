@@ -22,6 +22,31 @@ scr_console_register("help", function(args, line) {
 scr_console_register("clear", function(args, line) { console.log = []; });
 
 // Game commands
+scr_console_register("devmode", function(args, line) {
+	if (array_length(args) == 0)
+	{
+		scr_console_print("ERROR: Usage: devmode <on|off>");
+        return;
+	}
+	
+    var arg = string_lower(args[0]);
+    if (arg == "on") 
+	{
+        global.dev_mode = true;
+    } 
+	else if (arg == "off") 
+	{
+        global.dev_mode = false;
+    } 
+	else 
+	{
+        scr_console_print("ERROR: Usage: devmode <on|off>");
+        return;
+    }
+
+    scr_console_print($"Developer mode: {global.dev_mode ? "ON" : "OFF"}");
+});
+
 scr_console_register("skipwave", function(args, line) {
 	with (oCard) if (team == Team.Enemy) instance_destroy();
     if (instance_exists(oWaveManager)) with (oWaveManager) start_next_wave();
