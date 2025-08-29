@@ -1,4 +1,6 @@
 total_waves = 3;
+
+// Define what and where enemies spawn
 wave_enemies = [
     [], // empty, unused
     [ 

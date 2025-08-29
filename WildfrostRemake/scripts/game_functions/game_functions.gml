@@ -1,9 +1,3 @@
-function reset_variables()
-{
-	// Variables that need to be reset when the game restarts
-	global.wave = 0;
-}
-
 /// @func Starts the battle officially after the deployment phase
 function start_battle()
 {
@@ -24,6 +18,7 @@ function start_battle()
 	fill_all_gaps(Team.Enemy);
 }
 
+/// @func Triggers the combat phase for 1 team at a time
 function start_combat(_team)
 {
 	f("Starting combat...");
@@ -83,11 +78,13 @@ function end_turn()
 	global.current_phase = Phase.Casting;
 }
 
+/// @func Triggers victory actions
 function victory()
 {
 	room_goto(rmVictory);
 }
 
+/// @func Triggers fail actions
 function fail()
 {
 	room_goto(rmFail);

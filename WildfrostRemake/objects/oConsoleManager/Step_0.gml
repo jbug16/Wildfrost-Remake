@@ -1,5 +1,4 @@
-// oConsoleManager: Step
-// toggle with backtick/tilde
+// Toggle with tab
 if (keyboard_check_pressed(vk_tab)) {
     console.open = !console.open;
     if (console.open) {
@@ -9,23 +8,22 @@ if (keyboard_check_pressed(vk_tab)) {
     }
 }
 
-// while open, eat input
+// While open, eat input
 if (console.open) {
-    // basic text input
-    // accumulate keyboard_string delta
+    // Basic text input
     if (keyboard_string != "") {
         console.input += keyboard_string;
         keyboard_string = "";
     }
 
-    // backspace (hold to repeat)
+    // Delete with backspace
     if (keyboard_check_pressed(vk_backspace)) {
 	    if (string_length(console.input) > 0) {
 	        console.input = string_delete(console.input, string_length(console.input), 1);
 	    }
 	}
 
-    // submit
+    // Submit
     if (keyboard_check_pressed(vk_enter)) {
         var line = string_trim(console.input);
         if (line != "") {
@@ -36,7 +34,7 @@ if (console.open) {
         console.history_pos = -1;
     }
 
-    // history nav
+    // History nav (up and down arrows)
     if (keyboard_check_pressed(vk_up)) {
         if (array_length(console.history) > 0) {
             if (console.history_pos == -1) console.history_pos = array_length(console.history) - 1;
@@ -56,6 +54,6 @@ if (console.open) {
         }
     }
 
-    // caret blink
+    // Caret blink
     console.caret_timer++;
 }

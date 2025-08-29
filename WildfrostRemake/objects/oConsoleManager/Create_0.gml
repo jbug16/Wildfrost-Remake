@@ -8,12 +8,12 @@ console = {
     commands: ds_map_create() // name -> function(args, line)
 };
 
-// style
+// Style
 font_console = fntDefault;
 row_h = 18;
 max_log_lines = 12;
 
-// register built‑ins
+// Basic commands
 scr_console_register("help", function(args, line) {
     var keys = ds_map_keys_to_array(console.commands);
     array_sort(keys, true);
@@ -47,6 +47,10 @@ scr_console_register("devmode", function(args, line) {
     scr_console_print($"Developer mode: {global.dev_mode ? "ON" : "OFF"}");
 });
 
+scr_console_register("drawcards", function(args, line) {
+	draw_card(6, global.deck);
+});
+
 scr_console_register("skipwave", function(args, line) {
 	with (oCard) if (team == Team.Enemy) instance_destroy();
     if (instance_exists(oWaveManager)) with (oWaveManager) start_next_wave();
@@ -54,13 +58,11 @@ scr_console_register("skipwave", function(args, line) {
 });
 
 scr_console_register("killallenemies", function(args, line) {
-    // kill all enemies
     with (oCard) if (team == Team.Enemy) kill_unit(id);
     scr_console_print("all enemies killed");
 });
 
 scr_console_register("endturn", function(args, line) {
-    // end player's turn
 	if (global.current_phase == Phase.Deployment) scr_console_print("ERROR: deploy commander first");
     else 
 	{

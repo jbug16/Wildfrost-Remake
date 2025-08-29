@@ -1,12 +1,13 @@
+// Defines row and col number per grid
 grid_rows = 2;
 grid_cols = 6;
 
 slot_width  = sprite_get_width(sGridIcon);
 slot_height = sprite_get_height(sGridIcon);
 
-side_gap = 100; // space between player & enemy grids
-slot_gap_x = 20;   // horizontal spacing between slots
-slot_gap_y = 10;   // vertical spacing between slots
+side_gap = 100;		// space between player & enemy grids
+slot_gap_x = 20;	// horizontal spacing between slots
+slot_gap_y = 10;	// vertical spacing between slots
 
 // Total width = width of 3 slots + gaps between them, for both sides
 var side_width = (3 * slot_width) + (2 * slot_gap_x);
@@ -51,14 +52,13 @@ for (var r = 0; r < grid_rows; r++)
 {
     for (var c = 0; c < grid_cols; c++)
     {
-        var pos = grid_slots[r][c];
+        var pos = grid_slots[r][c]; // set position
 
-        var slot_inst = instance_create_layer(pos[0], pos[1], "Grid", oSlot);
+        var slot_inst = instance_create_layer(pos[0], pos[1], "Grid", oSlot); // create obj
 
+		// Set row and col number and team
         slot_inst.grid_row = r;
         slot_inst.grid_col = c;
         slot_inst.team = (c < 3) ? Team.Player : Team.Enemy;
-		
-		show_debug_message(slot_inst.team);
     }
 }

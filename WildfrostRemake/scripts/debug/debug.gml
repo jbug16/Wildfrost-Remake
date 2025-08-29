@@ -15,28 +15,27 @@ function get_phase(_phase)
 	}
 }
 
+/// @func Returns a string of the team
 function get_team(_team)
 {
 	return _team == Team.Player ? "player" : "enemy";
 }
 
-/// scr_console_register(name, fn)
-/// @param name string
-/// @param fn   function(args[], line)
+/// @func Registers a command for the custom in-game console
 function scr_console_register(name, fn) {
     with (oConsoleManager) {
         ds_map_replace(console.commands, string_lower(name), fn);
     }
 }
 
-/// scr_console_print(text)
+/// @func Prints the output to the console tab
 function scr_console_print(text) {
     with (oConsoleManager) {
         array_push(console.log, string(text));
     }
 }
 
-/// scr_console_tokenize(line) -> array of tokens (supports "quoted strings")
+/// @func Returns an array of tokens
 function scr_console_tokenize(line) {
     var s = string(line);
     var out = [];
@@ -64,7 +63,7 @@ function scr_console_tokenize(line) {
     return out;
 }
 
-/// scr_console_execute(line)
+/// @func Runs a custom console command
 function scr_console_execute(line) {
     with (oConsoleManager) {
         scr_console_print("> " + line);

@@ -119,12 +119,14 @@ function has_stat(_stat)
 	return _stat != -1;
 }
 
+/// @func Check if this card has a specific keyword
 function has_keyword(_inst, _keyword)
 {
 	var _data = global.card_data[_inst.card_id];
 	return array_contains(_data.keywords, _keyword);
 }
 
+/// @func Returns the index of the array
 function array_index_of(_arr, _val) 
 {
     var n = array_length(_arr);
@@ -212,6 +214,7 @@ function create_card(_id, _team = Team.Player, _x = 0, _y = 0)
 
 #region Gameplay
 
+/// @func Removes the card object from the hand array
 function remove_card_from_hand(_inst)
 {
 	var idx = array_index_of(global.current_hand, _inst);

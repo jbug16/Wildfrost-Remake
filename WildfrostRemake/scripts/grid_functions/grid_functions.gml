@@ -1,3 +1,4 @@
+/// @func Returns the index of the slot (0 to 5)
 function slot_index(_row, _col) 
 {
 	if (_row == undefined || _col == undefined) return;
@@ -5,6 +6,7 @@ function slot_index(_row, _col)
     return _row * 3 + _col; // 0..5
 }
 
+/// @func Returns a slot object
 function get_slot_inst(_team, _row, _col) 
 {
     var want_col = (_team == Team.Enemy) ? (_col + 3) : _col;
@@ -13,6 +15,7 @@ function get_slot_inst(_team, _row, _col)
     return result;
 }
 
+/// @func Moves a unit on the grid and updates the grid
 function move_unit(_unit, _new_row, _new_col)
 {
 	if (!instance_exists(_unit)) return;
@@ -24,6 +27,7 @@ function move_unit(_unit, _new_row, _new_col)
 	grid_place(_unit, _t, _new_row, _new_col);
 }
 
+/// @func Returns the unit's first target
 function find_attack_target(_attacker) 
 {
     var _other = (_attacker.team == Team.Player) ? Team.Enemy : Team.Player;
@@ -34,7 +38,7 @@ function find_attack_target(_attacker)
     return get_front_unit(_attacker, _face_col);
 }
 
-/// @desc Returns true if there is at least one enemy unit on the grid
+/// @func Returns true if there is at least one enemy unit on the grid
 function any_enemies_alive() 
 {
     for (var i = 0; i < 6; i++) 
@@ -45,6 +49,7 @@ function any_enemies_alive()
     return false;
 }
 
+/// @func Places a unit on the grid
 function grid_place(_unit, _team, _row, _col) 
 {
     var idx = slot_index(_row, _col);
@@ -66,6 +71,7 @@ function grid_place(_unit, _team, _row, _col)
 	fill_all_gaps(_team);
 }
 
+/// @func Removes a unit off the grid
 function grid_remove(_unit) 
 {
     if (!instance_exists(_unit)) return;
@@ -89,6 +95,7 @@ function grid_remove(_unit)
     _unit.col  = undefined;
 }
 
+/// @func Returns the front-most unit based on the column
 function get_front_unit(_attacker, _col) 
 {
 	if (!instance_exists(_attacker)) return noone;
@@ -113,6 +120,7 @@ function get_front_unit(_attacker, _col)
     return instance_exists(_u) ? _u : noone;
 }
 
+/// @func Returns the unit directly behind itself
 function get_unit_behind(_unit)
 {
 	if (!instance_exists(_unit)) return noone;
@@ -129,22 +137,25 @@ function get_unit_behind(_unit)
 	return instance_exists(_behind) ? _behind : noone;
 }
 
+/// @func Returns the front column number
 function front_edge_col(_team) 
 {
     return (_team == Team.Player) ? 2 : 0;
 }
 
+/// @func Returns the next col over
 function next_col_toward_front(_team, _col) 
 {
     return (_team == Team.Player) ? min(_col + 1, 2) : max(_col - 1, 0);
 }
 
+/// @func Checks if the current slot in the grid is free
 function grid_cell_free(_team, _row, _col)
 {
     return !instance_exists(global.current_grid[_team][slot_index(_row, _col)]);
 }
 
-/// true if there's at least one unit that can step toward the front (a gap ahead)
+/// @func Returns true if there's at least one unit that can step toward the front (a gap ahead)
 function team_has_movable_gap(_team) 
 {
     // Player: check (c -> c+1) for c=0..1
@@ -168,7 +179,7 @@ function team_has_movable_gap(_team)
     return false;
 }
 
-/// @desc Move one step toward front edge if the next cell is free
+/// @func Move one step toward front edge if the next cell is free
 function advance_unit_toward_front(_unit) 
 {
     if (!instance_exists(_unit)) return false;
@@ -184,6 +195,7 @@ function advance_unit_toward_front(_unit)
     return true;
 }
 
+/// @func Moves all units forward until there are no more gaps
 function fill_all_gaps(_team)
 {
 	for (var i = 0; i < 6; i++) 

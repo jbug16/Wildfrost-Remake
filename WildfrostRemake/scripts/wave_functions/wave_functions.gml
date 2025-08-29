@@ -1,3 +1,4 @@
+/// @func Spawns enemies for the wave
 function start_next_wave()
 {
 	// Spawn enemies
@@ -13,6 +14,7 @@ function start_next_wave()
 	}
 }
 
+/// @func Creates the enemy unit and places it on the grid
 function spawn_enemy(_enemy)
 {
 	// 1) Create a unit from a card id (same as player)

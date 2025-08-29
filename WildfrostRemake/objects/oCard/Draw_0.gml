@@ -1,3 +1,6 @@
+// Only use this draw event if the cards are NOT being dragged
+// This is because Draw GUI always draws anything in that event on top of everything else
+// (So we only want to draw the card on top of everything while we are dragging.)
 if (dragging) exit;
 
 // Draw card sprite

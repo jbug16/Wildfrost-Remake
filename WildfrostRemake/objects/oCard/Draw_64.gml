@@ -1,8 +1,9 @@
-// Debug
+// Draw debug text and lines
 if (global.dev_mode)
 {
 	draw_set_settings(fa_center, fa_middle, c_white);
 	draw_text(x, y-80, $"Row {row} -- Col {col}");
+	
 	if (hovered) 
 	{
 		var _target = find_attack_target(id);
@@ -15,6 +16,7 @@ if (global.dev_mode)
 	}
 }
 
+// Only run code below if we are actively dragging this card
 if (!dragging) exit;
 
 // Draw card sprite
